@@ -6,15 +6,15 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>CRUD edited</title>
 </head>
 <body>
 
-<h1>Persons</h1>
+<h1>Users</h1>
 
 <p>You have edited a person with id ${id} at <%= new java.util.Date() %></p>
 
-<p>Return to <a href="/kilbirdih/users/edit">Main List</a></p>
+<p>Return to <a href="/kilbirdih/users">Main List</a></p>
 
 </body>
 </html>

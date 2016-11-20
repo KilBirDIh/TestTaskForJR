@@ -18,12 +18,14 @@ public class User implements Serializable
     @Column(name = "age")
     private int age;
     @Column(name = "isAdmin")
-    private boolean isAdmin;
+    private boolean admin;
     @Column(name = "createDate")
     private Date createDate;
 
     public User()
     {
+        admin = false;
+        createDate = new Date();
     }
 
     public void setId(long id)
@@ -58,12 +60,12 @@ public class User implements Serializable
 
     public boolean isAdmin()
     {
-        return isAdmin;
+        return admin;
     }
 
-    public void setAdmin(boolean admin)
+    public void setAdmin(boolean isAdmin)
     {
-        isAdmin = admin;
+        this.admin = isAdmin;
     }
 
     public Date getCreateDate()

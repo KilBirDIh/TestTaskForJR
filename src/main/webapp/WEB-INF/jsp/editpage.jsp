@@ -6,11 +6,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>CRUD edit</title>
 </head>
 <body>
 
-<h1>Edit Person</h1>
+<h1>Edit User</h1>
 
 <form:form modelAttribute="userAttribute" method="POST" action="/kilbirdih/users/edit?id=${userAttribute.id}">
 	<table>
@@ -20,13 +20,17 @@
 		</tr>
 	
 		<tr>
-			<td><form:label path="Name">First Name:</form:label></td>
+			<td><form:label path="Name">Name:</form:label></td>
 			<td><form:input path="Name"/></td>
 		</tr>
 
 		<tr>
 			<td><form:label path="Age">Age</form:label></td>
 			<td><form:input path="Age"/></td>
+		</tr>
+		<tr>
+			<td><form:label path="Admin">Admin</form:label></td>
+			<td><form:checkbox path="Admin"/></td>
 		</tr>
 		
 

@@ -49,10 +49,16 @@ public class UserServiceImpl implements UserService
     }
 
     @Override
-    public User getUser(Long id)
+    public List getUsersByName(String name)
     {
         Session session = sessionFactory.getCurrentSession();
+        Query users = session.createQuery("FROM User U WHERE U.name=:name").setParameter("name", name);
 
+        return users.list();
+    }
+
+    public User getUser(Long id){
+        Session session = sessionFactory.getCurrentSession();
         return (User) session.get(User.class, id);
     }
 
@@ -60,8 +66,8 @@ public class UserServiceImpl implements UserService
     public List getAllUsers()
     {
         Session session = sessionFactory.getCurrentSession();
-        Query getUsers = session.createQuery("FROM User");
+        Query users = session.createQuery("FROM User");
 
-        return getUsers.list();
+        return users.list();
     }
 }

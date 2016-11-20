@@ -6,11 +6,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>CRUD deleted</title>
 </head>
 <body>
 
-<h1>Persons</h1>
+<h1>Users</h1>
 
 <p>You have deleted a person with id ${id} at <%= new java.util.Date() %></p>
 

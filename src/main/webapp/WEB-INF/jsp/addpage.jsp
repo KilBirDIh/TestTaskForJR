@@ -6,11 +6,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>CRUD add</title>
 </head>
 <body>
 
-<h1>Create New Person</h1>
+<h1>Create New User</h1>
 
 <form:form modelAttribute="userAttribute" method="POST" action="/kilbirdih/users/add">
 	<table>
@@ -22,6 +22,7 @@
 		<tr>
 			<td><form:label path="Age">Age</form:label></td>
 			<td><form:input path="Age"/></td>
+
 		</tr>
 		
 		<tr>

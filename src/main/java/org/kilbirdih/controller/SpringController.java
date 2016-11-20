@@ -3,6 +3,7 @@ package org.kilbirdih.controller;
 
 import org.kilbirdih.model.User;
 import org.kilbirdih.service.UserService;
+import org.springframework.beans.support.PagedListHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -20,13 +21,49 @@ public class SpringController
     private UserService userService;
 
     @RequestMapping(value = "/users", method = RequestMethod.GET)
-    public String getUsers(Model model)
+    public String getUsers(Model model, @RequestParam(required = false) Integer page, @RequestParam(required = false) String name)
     {
         List users = userService.getAllUsers();
+        if(name != null && !name.equals("")){
+            users = userService.getUsersByName(name);
+        }
+        PagedListHolder pagedListHolder = new PagedListHolder<>(users);
 
-        model.addAttribute("users", users);
+        pagination(model, page, pagedListHolder);
 
         return "userspage";
+    }
+
+    @RequestMapping(value = "/users", method = RequestMethod.POST)
+    public String getUsersByName(Model model, @RequestParam(value = "name") String name, @RequestParam(required = false) Integer page)
+    {
+        List users = userService.getUsersByName(name);
+
+        model.addAttribute("name", name);
+
+        PagedListHolder pagedListHolder = new PagedListHolder<>(users);
+
+        pagination(model, page, pagedListHolder);
+
+        return "userspage";
+    }
+
+    private void pagination(Model model, Integer page, PagedListHolder pagedListHolder)
+    {
+        pagedListHolder.setPageSize(3);
+        model.addAttribute("maxPages", pagedListHolder.getPageCount());
+
+        if(page==null || page < 1 || page > pagedListHolder.getPageCount())page=1;
+
+        model.addAttribute("page", page);
+        if(page < 1 || page > pagedListHolder.getPageCount()){
+            pagedListHolder.setPage(0);
+            model.addAttribute("users", pagedListHolder.getPageList());
+        }
+        else if(page <= pagedListHolder.getPageCount()) {
+            pagedListHolder.setPage(page-1);
+            model.addAttribute("users", pagedListHolder.getPageList());
+        }
     }
 
     @RequestMapping(value = "/users/add", method = RequestMethod.GET)
